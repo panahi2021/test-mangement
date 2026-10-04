@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Scenario Management</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- html2pdf for PDF Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Highlight.js for Code Formatting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+    <!-- Image Zoom Modal -->
+    <div id="image-modal" class="modal hidden">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+
+    <div class="app-layout">
+        <!-- Sidebar (File Manager) -->
+        <aside class="sidebar">
+            <h2 class="sidebar-title">File Manager</h2>
+            
+            <div class="dropdown" id="create-dropdown">
+                <button id="create-btn" class="primary-btn full-width">+ Create New ▾</button>
+                <div id="create-menu" class="dropdown-content">
+                    <a href="#" class="create-option" data-type="test-scenario">Test Scenario</a>
+                    <a href="#" class="create-option" data-type="bug-report">Bug Report</a>
+                </div>
+            </div>
+
+            <div class="saved-files">
+                <h3>Saved Tasks</h3>
+                <ul id="saved-tasks-list">
+                    <!-- Loaded via JS -->
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container" id="pdf-content">
+                <header>
+                    <h1 id="main-title">Test Scenario Management</h1>
+                    <div class="header-actions">
+                        <button id="export-pdf-btn" class="secondary-btn" style="background-color: #f39c12; font-weight: bold; color: #fff;">Export PDF</button>
+                        <div class="task-header">
+                            <label for="task-id">Task ID:</label>
+                            <input type="text" id="task-id" placeholder="e.g., SP-5151">
+                        </div>
+                        <button id="save-task-btn" class="success-btn">Save Task</button>
+                    </div>
+                </header>
+
+                <!-- View: Test Scenario -->
+                <div id="view-test-scenario" class="view-section">
+                    <section class="controls">
+                        <div class="column-toggles">
+                            <strong>Show/Hide Columns:</strong>
+                            <label><input type="checkbox" class="toggle-col" data-col="col-url" checked> URL/Query Name</label>
+                            <label><input type="checkbox" class="toggle-col" data-col="col-scenario" checked> Test Scenario</label>
+                            <label><input type="checkbox" class="toggle-col" data-col="col-testcase" checked> Test Case</label>
+                            <label><input type="checkbox" class="toggle-col" data-col="col-expected" checked> Expected Result</label>
+                            <label><input type="checkbox" class="toggle-col" data-col="col-req" checked> Request Body</label>
+                            <label><input type="checkbox" class="toggle-col" data-col="col-res" checked> Response Body</label>
+                            <label><input type="checkbox" class="toggle-col" data-col="col-image" checked> Image Upload</label>
+                            <label><input type="checkbox" class="toggle-col" data-col="col-status" checked> Status</label>
+                            <button id="toggle-all-btn" class="secondary-btn">Toggle All</button>
+                        </div>
+                    </section>
+
+                    <div class="table-container">
+                        <table id="test-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-index">#</th>
+                                    <th class="col-url">URL/Query Name</th>
+                                    <th class="col-scenario">Test Scenario</th>
+                                    <th class="col-testcase">Test Case</th>
+                                    <th class="col-expected">Expected Result</th>
+                                    <th class="col-req">Request Body</th>
+                                    <th class="col-res">Response Body</th>
+                                    <th class="col-image">Image Upload</th>
+                                    <th class="col-status">Status</th>
+                                    <th class="col-actions">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                <!-- Rows generated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="add-scenario-container">
+                        <button id="add-scenario-btn" class="primary-btn">+ Add New Scenario</button>
+                    </div>
+
+                    <section class="images-section">
+                        <h2>Test Case Images</h2>
+                        <div id="image-gallery" class="image-gallery">
+                            <!-- Images generated via JS -->
+                        </div>
+                    </section>
+                </div>
+
+                <!-- View: Bug Report -->
+                <div id="view-bug-report" class="view-section hidden">
+                    <div class="placeholder-box">
+                        <h2>Bug Report Area</h2>
+                        <p>The Bug Report table format will be added here once defined.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
